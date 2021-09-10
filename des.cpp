@@ -67,7 +67,11 @@ void des(HalonHSLContext* hhc, HalonHSLArguments* args, HalonHSLValue* ret, bool
 	else if (mode == "ede3") destype = DES_EDE3;
 	else if (mode == "ede3-cfb") destype = DES_EDE3_CFB;
 	else if (mode == "ede3-ofb") destype = DES_EDE3_OFB;
-	else return;
+	else
+	{
+		syslog(LOG_ERR, "unknown mode");
+		return;
+	}
 
 	const char* iv = "";
 	size_t ivlen = 0;
