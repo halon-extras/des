@@ -2,6 +2,24 @@
 
 This plugin adds DES encryption and decryption function to HSL using OpenSSL.
 
+## Installation
+
+Follow the [instructions](https://docs.halon.io/manual/comp_install.html#installation) in our manual to add our package repository and then run the below command.
+
+### Ubuntu
+
+```
+apt-get install halon-extras-des
+```
+
+### RHEL
+
+```
+yum install halon-extras-des
+```
+
+## Usage
+
 ### des_encrypt(message, key, mode[, options])
 
 Encrypt a message using DES. On error none is returned.
@@ -17,6 +35,8 @@ The following options are available in the options array.
 - padding (boolean) Use PKCS7 padding. The default is true.
 
 ```
+import { des_encrypt } from "extras://des";
+
 $encrypted = des_encrypt(
                         "hello world",
                         pack("a8", "my key"),
@@ -40,6 +60,8 @@ The following options are available in the options array.
 - padding (boolean) Use PKCS7 padding. The default is true.
 
 ```
+import { des_decrypt } from "extras://des";
+
 $message = des_decrypt(
                         $encrypted,
                         pack("a8", "my key"),
