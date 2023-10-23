@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -y halon=5.10.0
 
 RUN /usr/bin/install -d /var/run/halon
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH
-RUN apt-get update
 
 RUN apt-get install -y git cmake build-essential libssl-dev
 
