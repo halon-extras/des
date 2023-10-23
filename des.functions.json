@@ -1,0 +1,62 @@
+[
+    {
+        "name": "des_encrypt",
+        "parameters": {
+            "required": [
+                {
+                    "name": "message",
+                    "type": "string"
+                },
+                {
+                    "name": "key",
+                    "type": "string"
+                },
+                {
+                    "name": "mode",
+                    "type": "string"
+                }
+            ],
+            "optional": [
+                {
+                    "name": "options",
+                    "type": "array"
+                }
+            ]
+        },
+        "returnType": "array or none",
+        "detail": "des_encrypt(string $message, string $key, string $mode [, array $options]): string or none",
+        "value": "des_encrypt($0)",
+        "documentation": "DES encrypt a message (string). On error none is returned.",
+        "link": "[Full documentation](https://github.com/halon-extras/des)"
+    },
+    {
+        "name": "des_decrypt",
+        "parameters": {
+            "required": [
+                {
+                    "name": "message",
+                    "type": "string"
+                },
+                {
+                    "name": "key",
+                    "type": "string"
+                },
+                {
+                    "name": "mode",
+                    "type": "string"
+                }
+            ],
+            "optional": [
+                {
+                    "name": "options",
+                    "type": "array"
+                }
+            ]
+        },
+        "returnType": "array or none",
+        "detail": "des_decrypt(string $message, string $key, string $mode [, array $options]): string or none",
+        "value": "des_decrypt($0)",
+        "documentation": "DES decrypt a message (string). On error none is returned.",
+        "link": "[Full documentation](https://github.com/halon-extras/des)"
+    }
+]

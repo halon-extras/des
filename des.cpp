@@ -138,6 +138,8 @@ void des_decrypt(HalonHSLContext* hhc, HalonHSLArguments* args, HalonHSLValue* r
 HALON_EXPORT
 bool Halon_hsl_register(HalonHSLRegisterContext* ptr)
 {
+	HalonMTA_hsl_module_register_function(ptr, "des_encrypt", &des_encrypt);
+	HalonMTA_hsl_module_register_function(ptr, "des_decrypt", &des_decrypt);
 	HalonMTA_hsl_register_function(ptr, "des_encrypt", &des_encrypt);
 	HalonMTA_hsl_register_function(ptr, "des_decrypt", &des_decrypt);
 	return true;

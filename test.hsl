@@ -1,0 +1,14 @@
+import { des_encrypt, des_decrypt } from "extras://des";
+$encrypted = des_encrypt(
+                        "hello world",
+                        pack("a8", "my key"),
+                        "cbc",
+                        ["iv" => pack("x8")]
+                );
+
+echo des_decrypt(
+                        $encrypted,
+                        pack("a8", "my key"),
+                        "cbc",
+                        ["iv" => pack("x8")]
+                );
