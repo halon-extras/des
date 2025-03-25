@@ -14,8 +14,17 @@ RUN echo "gpgkey=https://raw.githubusercontent.com/halon/changelog/master/pgp-ke
 RUN echo "enabled=1" >> /etc/yum.repos.d/Halon.repo
 RUN yum install -y halon-5.12.1
 
-RUN yum install -y cmake3 make gcc-c++ rpm-build openssl-devel
+RUN yum install -y cmake3 make gcc-c++ rpm-build wget
 RUN echo -n "ROCKY9" > /OSRELEASE.txt
+
+RUN yum install -y perl perl-FindBin perl-File-Compare perl-File-Copy
+RUN mkdir /build
+RUN cd /build \
+    && wget https://www.openssl.org/source/openssl-1.1.1w.tar.gz \
+    && tar -xzvf openssl-1.1.1w.tar.gz && cd openssl-1.1.1w \
+    && ./config --prefix=/external --libdir=lib \
+    && make && make install_sw
+RUN rm -rf /build
 
 COPY build.sh /build.sh
 CMD ["/build.sh"]

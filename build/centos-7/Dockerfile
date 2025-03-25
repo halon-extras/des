@@ -4,6 +4,10 @@ LABEL org.opencontainers.image.authors="support@halon.io"
 ARG HALON_REPO_USER
 ARG HALON_REPO_PASS
 
+RUN sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo
+RUN sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo
+RUN sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo
+
 RUN yum update -y && yum install -y epel-release
 
 RUN echo "[halon]" >> /etc/yum.repos.d/Halon.repo
@@ -15,6 +19,11 @@ RUN echo "enabled=1" >> /etc/yum.repos.d/Halon.repo
 RUN yum install -y halon-5.10.0
 
 RUN yum install -y centos-release-scl
+
+RUN sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo
+RUN sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo
+RUN sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo
+
 RUN yum install -y devtoolset-8
 
 SHELL ["/usr/bin/scl", "enable", "devtoolset-8"]
@@ -24,8 +33,16 @@ ENV BASH_ENV="/usr/bin/scl_enable" \
     ENV="/usr/bin/scl_enable" \
     PROMPT_COMMAND=". /usr/bin/scl_enable"
 
-RUN yum install -y cmake3 make gcc-c++ rpm-build openssl-devel
+RUN yum install -y cmake3 make gcc-c++ rpm-build wget
 RUN echo -n "CENTOS7" > /OSRELEASE.txt
+
+RUN mkdir /build
+RUN cd /build \
+    && wget https://www.openssl.org/source/openssl-1.1.1w.tar.gz \
+    && tar -xzvf openssl-1.1.1w.tar.gz && cd openssl-1.1.1w \
+    && ./config --prefix=/external --libdir=lib \
+    && make && make install_sw
+RUN rm -rf /build
 
 COPY build.sh /build.sh
 CMD ["/build.sh"]
