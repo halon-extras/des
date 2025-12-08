@@ -1,0 +1,20 @@
+{
+    "bomFormat": "CycloneDX",
+    "specVersion": "1.4",
+    "version": 1,
+    "components": [
+        {
+            "type": "library",
+            "name": "openssl",
+            "version": "1.1.1w",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "Apache-2.0"
+                    }
+                }
+            ],
+            "cpe": "cpe:/a:openssl:openssl:1.1.1w"
+        }
+    ]
+}
