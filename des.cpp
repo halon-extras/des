@@ -49,9 +49,9 @@ void des(HalonHSLContext* hhc, HalonHSLArguments* args, HalonHSLValue* ret, bool
 	}
 
 	x = HalonMTA_hsl_argument_get(args, 2);
-	const char* mode_ = "des-cbc";
+	const char* mode_ = "cbc";
 	size_t modelen_ = strlen(mode_);
-	if (x && (HalonMTA_hsl_value_type(x) != HALONMTA_HSL_TYPE_STRING ||
+	if (!x || (HalonMTA_hsl_value_type(x) != HALONMTA_HSL_TYPE_STRING ||
 			!HalonMTA_hsl_value_get(x, HALONMTA_HSL_TYPE_STRING, &mode_, &modelen_)))
 	{
 		return;
