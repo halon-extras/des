@@ -1,8 +1,8 @@
 {
-  "name": "des",
-  "context": "..",
-  "dockerFile": "./Dockerfile",
-  "overrideCommand": false,
+	"name": "des",
+	"context": "..",
+	"dockerFile": "./Dockerfile",
+	"overrideCommand": false,
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -14,13 +14,13 @@
 			]
 		}
 	},
-  "mounts": [
-    "source=${localWorkspaceFolder}/.devcontainer/smtpd/dist,target=/etc/halon,type=bind,consistency=cached"
-  ],
-  "build": {
-    "args": {
-      "HALON_REPO_USER": "${localEnv:HALON_REPO_USER}",
-      "HALON_REPO_PASS": "${localEnv:HALON_REPO_PASS}"
-    }
-  }
+	"mounts": [
+		"source=${localWorkspaceFolder}/.devcontainer/smtpd/dist,target=/etc/halon,type=bind,consistency=cached"
+	],
+	"build": {
+		"args": {
+			"HALON_REPO_USER": "${localEnv:HALON_REPO_USER}",
+			"HALON_REPO_PASS": "${localEnv:HALON_REPO_PASS}"
+		}
+	}
 }
